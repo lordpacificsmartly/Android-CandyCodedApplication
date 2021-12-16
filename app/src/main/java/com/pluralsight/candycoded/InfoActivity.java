@@ -42,17 +42,13 @@ public class InfoActivity extends AppCompatActivity {
     public void createMapIntent(View view){
         // Create a Uri from an intent string. Use the result to create an Intent.
         // Create an Intent from Uri. Set the action to ACTION_VIEW
-        Uri url = Uri.parse("geo:0,0?q=618 E South St Orlando, FL 32801");
-        Intent mapIntent=new Intent(Intent.ACTION_VIEW, Uri.parse(String.valueOf(url)));
+        Uri uriAddress = Uri.parse("geo:0,0?q=618 E South St Orlando, FL 32801");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, uriAddress);
         // Make the Intent explicit by setting the Google Maps package
         mapIntent.setPackage("com.google.android.apps.maps");
-        PackageManager packageManager = getPackageManager();
-        if (mapIntent.resolveActivity(packageManager) != null){
+        if (mapIntent.resolveActivity(getPackageManager()) != null){
             // Attempt to start an activity that can handle the Intent
             startActivity(mapIntent);
-        } else {
-            Log.d("TAG", "No Intent available to handle action");
-            mapIntent.resolveActivity(getPackageManager());
         }
     }
 
